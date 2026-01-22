@@ -1,157 +1,114 @@
 🏢 SME Modular ERP System
+--------------------------
+A production-grade, microservices-based ERP system for Small & Medium Enterprises (SMEs)
+Built with real business flows, enterprise architecture, and clean UI.
 
-A modular, microservices-based ERP system designed for Small & Medium Enterprises (SMEs), covering end-to-end business operations including Sales, Inventory, Accounting, HR, Security, and Admin Analytics.
-
-This ERP follows real-world enterprise architecture patterns, not demo shortcuts.
-
-📌 Key Highlights
-
-🔧 Microservices Architecture
-
-🔐 JWT-based Security with API Gateway
-
-🧱 Domain-driven design (no shared databases)
-
-🔄 Event-driven & idempotent flows
-
-📊 Admin Dashboard with KPIs & charts
-
-🧠 Real ERP business flows (Sales → Inventory → Accounting)
-
-🎨 Clean, enterprise-grade React UI
+🚀 Why This Project?
+-------------------
+This ERP system is designed to simulate real-world enterprise operations, focusing on:
+Correct domain separation
+Scalable architecture
+Backend-driven business rules
+Professional admin UI
+✔ No shared databases
+✔ No shortcut logic
+✔ No hardcoded flows
 
 🧱 Tech Stack
-Backend
-
+🔧 Backend
+--------------------
 Java 17
-
 Spring Boot 3.x
-
 Spring Security + JWT
-
 Spring Data JPA
-
 Spring Cloud Gateway
-
 Eureka Service Discovery
-
 MySQL
+REST APIs
 
-RESTful APIs
-
-Frontend
-
+🎨 Frontend
+--------------------
 React
-
-Axios-based API layer
-
+Axios
 Role-based routing
-
+Recharts (Charts & KPIs)
 Reusable UI components
 
-Recharts (Analytics & KPIs)
-
-🧩 Microservices Overview
-Service	Description
-erp-security	Authentication, JWT issuing, role management
-api-gateway	Central entry point, JWT enforcement, routing
-erp-sales	Sales orders, order lifecycle
-erp-inventory	Inventory stock, adjustments, availability
-erp-accounting	Invoices, payments, aging reports
+🧩 Microservices Architecture
+-----------------------------
+Service	Responsibility
+erp-security	Authentication, JWT issuing, roles
+api-gateway	Central entry point, JWT enforcement
+erp-sales	Sales orders & lifecycle
+erp-inventory	Inventory & stock management
+erp-accounting	Invoices, payments, aging
 erp-hr	Employees, departments, lifecycle
 eureka-server	Service discovery
-🔐 Security Model
-
-JWT issued by erp-security
-
-Enforced at API Gateway
+🔐 Security & Access Control
+JWT-based authentication
+Token enforced at API Gateway
 
 Role-based access:
-
+-----------------
 ADMIN
-
 SALES
-
 INVENTORY
-
 ACCOUNTANT
-
 HR
+USER(Portal user)
 
-USER (portal user)
+Backend always authoritative
+Safe internal service communication
 
-No service-to-service DB sharing
-
-Internal service calls handled safely
-
-🔁 Core Business Flows
+🔁 Core ERP Business Flows
+--------------------------
 🛒 Sales → Inventory → Accounting
-
-Sales Order created (DRAFT)
-
+Sales order created (DRAFT)
 Order confirmed
-
 Inventory stock deducted
+Invoice auto-generated
+Payment & aging tracked
+🔥 No manual invoice creation — fully system-driven
 
-Accounting invoice auto-created
+👥 HR Management
+----------------
 
-Invoice tracked for payment & aging
-
-⚠️ No manual invoice creation required — invoices are system-generated
-
-👥 HR Lifecycle
-
-Employee creation
-
+Employee master
 Department master (active/inactive)
 
-Lifecycle states:
-
+Employee lifecycle:
+------------------
 ACTIVE
-
 ON_LEAVE
-
 RESIGNED
-
 TERMINATED
 
-Backend-enforced rules
+Backend-validated lifecycle transitions
+----------------------------------------
 
-Admin KPIs reflect real-time headcount
+HR KPIs available to Admin
 
-📊 Admin Dashboard
-
-Real-time KPIs across domains:
-
-Sales
-
+📊 Admin Dashboard (Real-Time KPIs)
+-----------------------------------
+📈 Sales
 Pending sales orders
-
-Inventory
-
+📦 Inventory
 Low stock alerts
-
-Accounting
-
+💰 Accounting
 Outstanding amount
-
 Overdue invoices
+Issued vs Paid
+Invoice aging (0–30, 31–60, 60+ days)
 
-Issued vs Paid invoices
-
-Aging buckets (0–30, 31–60, 60+ days)
-
-HR
-
+👥 HR
+------
 Total employees
-
-Active / On Leave
-
+Active / On leave
 Exited employees
-
-Charts built using Recharts and ChartCard components.
+All charts powered by Recharts.
 
 🖥️ Frontend Structure
+----------------------
 src/
  ├── components/
  │   ├── Navbar
@@ -174,22 +131,18 @@ src/
  │   └── Profile
  │
  ├── services/
- │   ├── api.js
- │   ├── salesApi.js
- │   ├── inventoryApi.js
- │   ├── accountingApi.js
- │   ├── hrApi.js
- │   └── departmentApi.js
+ │   └── API modules (Sales, HR, Accounting, Inventory)
  │
  └── context/
      └── AuthContext
 
-🚀 How to Run Locally
+▶️ How to Run Locally
 Backend
+--------------------
 
 Start Eureka Server
 
-Start services in order:
+Start services:
 
 erp-security
 
@@ -206,57 +159,34 @@ erp-hr
 Ensure MySQL is running
 
 Frontend
+--------
 npm install
 npm start
 
 
-Frontend runs at:
+Frontend: http://localhost:3000
 
-http://localhost:3000
+API Gateway: http://localhost:8080
 
+🧠 Architecture Principles Followed
+------------------------------------
 
-Gateway runs at:
+Microservices with clear boundaries
 
-http://localhost:8080
+No shared databases
 
-🧪 Design Principles Followed
-
-Single responsibility per service
-
-No shared DBs
-
-Backend is authoritative (UI is not trusted)
+Backend-first validation
 
 Idempotent operations
 
-Production-grade validation
+Real ERP lifecycle modeling
 
-Clear separation of concerns
-
-📈 Future Enhancements
-
-Audit logs
-
-Approval workflows
-
-Multi-branch support
-
-Multi-currency accounting
-
-PDF invoice export
-
-Role-based dashboard customization
-
-Dark mode
 
 👨‍💻 Author
+---------
 
-Built as a real-world ERP system focusing on:
-
-Correct architecture
-
-Clean domain modeling
-
+Built as a real-world ERP system with focus on:
+Clean architecture
+Enterprise patterns
 Practical business flows
-
-Enterprise-grade UI
+Professional UI/UX
